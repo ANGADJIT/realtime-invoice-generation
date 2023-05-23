@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google Pay Invoice</title>
+    <style>
+        /* CSS styles for the invoice */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #555555;
+            text-align: center;
+        }
+
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f9f9f9;
+        }
+
+        .invoice-total {
+            text-align: right;
+        }
+
+        .invoice-total p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Google Pay Invoice</h1>
+
+    <div class="invoice-details">
+        <p>Transaction ID: {{ transaction_id }}</p>
+        <p>Date: {{ date }}</p>
+        <p>Customer Name: {{ customer_name }}</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.quantity * item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="invoice-total">
+        <p>Total: {{ total }}</p>
+    </div>
+
+</body>
+
+</html>
