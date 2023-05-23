@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:invoice_app/src/utils/colors.dart';
 import 'package:invoice_app/src/utils/custom_media_query.dart';
 import 'package:invoice_app/src/utils/strings.dart';
+import 'package:pay/pay.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Home extends StatefulWidget {
@@ -13,12 +14,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late int _amount;
+  late String _amount;
 
   final Random _random = Random();
 
   @override
   void initState() {
+    _generateRandomAmount();
+
     super.initState();
   }
 
@@ -30,7 +33,7 @@ class _HomeState extends State<Home> {
         backgroundColor: white,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: _generateRandomAmount,
               icon: Icon(
                 Icons.refresh,
                 color: purple,
@@ -42,10 +45,39 @@ class _HomeState extends State<Home> {
           child: VStack([
         //
         CustomMediaQuery.makeHeight(context, .1).heightBox,
-        Image.asset(homeImageAssetPath)
+        Image.asset(homeImageAssetPath),
+
+        //
+        CustomMediaQuery.makeHeight(context, .06).heightBox,
+        FutureBuilder(
+            future: PaymentConfiguration.fromAsset(googlePayConfiguration),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return GooglePayButton(
+                    loadingIndicator: CircularProgressIndicator(
+                      backgroundColor: purple,
+                      color: white,
+                    ).centered(),
+                    paymentConfiguration: snapshot.data,
+                    onPaymentResult: (result) {},
+                    paymentItems: [
+                      PaymentItem(
+                          label: 'Total Amount',
+                          amount: _amount,
+                          status: PaymentItemStatus.final_price)
+                    ]).centered();
+              }
+
+              return CircularProgressIndicator(
+                backgroundColor: purple,
+                color: white,
+              ).centered();
+            })
       ])),
     );
   }
 
-  void _generateRandomAmount() => _amount = _random.nextInt(1001);
+  void _generateRandomAmount() => _amount = (_random.nextInt(1001) +
+          double.parse(_random.nextDouble().toStringAsFixed(2)))
+      .toString();
 }
