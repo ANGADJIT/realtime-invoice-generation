@@ -1,4 +1,3 @@
-from typing import Any
 from jinja2 import Template
 import xhtml2pdf.pisa as pisa
 from io import BytesIO

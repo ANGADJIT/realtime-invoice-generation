@@ -1,3 +1,9 @@
 .venv
 venv
 code
+test.*
+*.yml
+*.zip
+*.json
+output.*
+cmds.*
