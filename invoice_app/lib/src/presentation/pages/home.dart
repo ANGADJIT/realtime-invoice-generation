@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:invoice_app/src/data/invoice_generator_api.dart';
 import 'package:invoice_app/src/utils/colors.dart';
+import 'package:invoice_app/src/utils/custom_loading.dart';
 import 'package:invoice_app/src/utils/custom_media_query.dart';
 import 'package:invoice_app/src/utils/strings.dart';
 import 'package:pay/pay.dart';
@@ -17,6 +19,9 @@ class _HomeState extends State<Home> {
   late String _amount;
 
   final Random _random = Random();
+
+  // api object
+  final InvoiceGeneratorApi _invoiceGeneratorApi = InvoiceGeneratorApi();
 
   @override
   void initState() {
@@ -59,8 +64,20 @@ class _HomeState extends State<Home> {
                       color: white,
                     ).centered(),
                     paymentConfiguration: snapshot.data,
-                    onPaymentResult: (result) {
-                      print(result);
+                    onPaymentResult: (result) async {
+                      CustomLoading.showLoading(context);
+                      try {
+                        // add amount
+                        result['amount'] = double.parse(_amount);
+
+                        final id =
+                            await _invoiceGeneratorApi.sendPaymentEvent(result);
+                        print(id);
+                      } catch (e) {
+                        VxToast.show(context, msg: e.toString());
+                      } finally {
+                        CustomLoading.dismiss();
+                      }
                     },
                     paymentItems: [
                       PaymentItem(

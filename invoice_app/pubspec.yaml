@@ -17,6 +17,9 @@ dependencies:
   velocity_x:
   shared_preferences: ^2.0.18
   pay:
+  dio:
+  path_provider:
+  web_socket_channel:
 
 dev_dependencies:
   flutter_test:
