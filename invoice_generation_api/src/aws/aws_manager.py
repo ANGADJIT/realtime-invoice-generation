@@ -4,6 +4,7 @@ from os import environ
 import json
 from string import ascii_lowercase
 from random import sample
+from botocore.exceptions import ClientError
 
 
 class AwsManager:
@@ -13,7 +14,7 @@ class AwsManager:
 
         region_name: str = environ.get('REGION_NAME')
         endpoint_url: str = environ.get('ENDPOINT_URL')
-        self.__kinesis = boto3.client('s3', region_name=region_name,
+        self.__kinesis = boto3.client('kinesis', region_name=region_name,
                                       endpoint_url=endpoint_url)
         self.__s3 = boto3.client('s3', region_name=region_name,
                                  endpoint_url=endpoint_url)
@@ -36,11 +37,11 @@ class AwsManager:
         bucket_name: str = environ.get('BUCKET_NAME')
 
         try:
-            self.__s3.head(Bucket=bucket_name, Key=object_key)
+            self.__s3.head_object(Bucket=bucket_name, Key=object_key)
 
             return True
 
-        except (self.__s3.exceptions.NoSuchKey):
+        except (ClientError):
             return False
 
     def generate_public_url(self, object_key: str) -> str:
