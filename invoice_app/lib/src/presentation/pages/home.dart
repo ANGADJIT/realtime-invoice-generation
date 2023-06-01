@@ -59,7 +59,9 @@ class _HomeState extends State<Home> {
                       color: white,
                     ).centered(),
                     paymentConfiguration: snapshot.data,
-                    onPaymentResult: (result) {},
+                    onPaymentResult: (result) {
+                      print(result);
+                    },
                     paymentItems: [
                       PaymentItem(
                           label: 'Total Amount',
