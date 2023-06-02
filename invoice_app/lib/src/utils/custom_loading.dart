@@ -21,7 +21,7 @@ class CustomLoading {
               left: CustomMediaQuery.makeWidth(context, .45),
               child: CircularProgressIndicator(
                 strokeWidth: 3.4,
-                color: red,
+                color: purple,
               )));
 
       Overlay.of(context)!.insert(_overlayEntry!);

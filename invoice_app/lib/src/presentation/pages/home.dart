@@ -1,8 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:invoice_app/src/data/invoice_generator_api.dart';
 import 'package:invoice_app/src/utils/colors.dart';
-import 'package:invoice_app/src/utils/custom_loading.dart';
 import 'package:invoice_app/src/utils/custom_media_query.dart';
 import 'package:invoice_app/src/utils/strings.dart';
 import 'package:pay/pay.dart';
@@ -65,18 +65,18 @@ class _HomeState extends State<Home> {
                     ).centered(),
                     paymentConfiguration: snapshot.data,
                     onPaymentResult: (result) async {
-                      CustomLoading.showLoading(context);
                       try {
                         // add amount
                         result['amount'] = double.parse(_amount);
 
-                        final id =
-                            await _invoiceGeneratorApi.sendPaymentEvent(result);
-                        print(id);
+                        // add date
+                        DateTime now = DateTime.now();
+                        result['date'] = '${now.day}-${now.month}-${now.year}';
+
+                        _invoiceGeneratorApi.sendPaymentEvent(
+                            jsonEncode(result), context);
                       } catch (e) {
                         VxToast.show(context, msg: e.toString());
-                      } finally {
-                        CustomLoading.dismiss();
                       }
                     },
                     paymentItems: [
