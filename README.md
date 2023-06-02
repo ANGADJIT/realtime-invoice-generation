@@ -1,6 +1,6 @@
 # Realtime Invoice Generator
 
-![Workflow](https://github.com/ANGADJIT/realtime-invoice-generation/assets/67195682/89cfbf3e-82a4-4173-a96c-68da8cd2a378)
+![Workflow](https://github.com/ANGADJIT/realtime-invoice-generation/assets/67195682/91df2362-c83f-4558-8f5d-1ea436f602b3)
 ## Workflow Explanation
 
 We have a super heating real-time invoice generator app that follows the following workflow:
@@ -18,7 +18,7 @@ We have a super heating real-time invoice generator app that follows the followi
 11. An intent is opened by Android, allowing the user to choose a PDF app to view the invoice.
 
 ## Project Demo
-https://github.com/ANGADJIT/realtime-invoice-generation/assets/67195682/1e77a74c-5159-4bb0-9925-94f543ce6ca0
+https://github.com/ANGADJIT/realtime-invoice-generation/assets/67195682/3d1a98e7-5a0f-4e19-8835-8424812998a4
 
 ## Tech Stack Used
 
