@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:invoice_app/src/presentation/pages/home.dart';
+import 'package:invoice_app/src/utils/cache_manager.dart';
 import 'package:invoice_app/src/utils/colors.dart';
 import 'package:invoice_app/src/utils/custom_media_query.dart';
 import 'package:invoice_app/src/utils/strings.dart';
@@ -31,15 +33,19 @@ class APIEndpointPage extends StatelessWidget {
         //
         CustomMediaQuery.makeHeight(context, .09).heightBox,
         OutlinedButton(
-                onPressed: (){},
+                onPressed: () {
+                  CacheManager.cacheBaseHost(_host.text);
+                  context.nextPage(const Home());
+                },
                 child: addUrlButtonText.text.make())
             .centered(),
         OutlinedButton(
-                onPressed: (){},
+                onPressed: () {
+                  context.nextPage(const Home());
+                },
                 child: usePreviousButtonText.text.make())
             .centered(),
       ]).px(CustomMediaQuery.makeWidth(context, .04)))),
     );
   }
-
 }

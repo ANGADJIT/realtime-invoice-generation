@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:invoice_app/src/presentation/pages/home.dart';
 import 'package:invoice_app/src/utils/api_endpoint_page.dart';
+import 'package:invoice_app/src/utils/cache_manager.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  CacheManager.init();
+
   runApp(const RealtimeInvoiceGenerationApp());
 }
 
@@ -13,7 +16,7 @@ class RealtimeInvoiceGenerationApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: APIEndpointPage(),
     );
   }
 }

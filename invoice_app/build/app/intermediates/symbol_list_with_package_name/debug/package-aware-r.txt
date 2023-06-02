@@ -20,6 +20,7 @@ attr cameraZoom
 attr circleCrop
 attr clearTop
 attr colorScheme
+attr coordinatorLayoutStyle
 attr customThemeStyle
 attr environment
 attr finishPrimaryWithSecondary
@@ -39,10 +40,17 @@ attr fragmentMode
 attr fragmentStyle
 attr imageAspectRatio
 attr imageAspectRatioAdjust
+attr keylines
 attr latLngBoundsNorthEastLatitude
 attr latLngBoundsNorthEastLongitude
 attr latLngBoundsSouthWestLatitude
 attr latLngBoundsSouthWestLongitude
+attr layout_anchor
+attr layout_anchorGravity
+attr layout_behavior
+attr layout_dodgeInsetEdges
+attr layout_insetEdge
+attr layout_keyline
 attr liteMode
 attr mapType
 attr maskedWalletDetailsBackground
@@ -64,6 +72,7 @@ attr splitLayoutDirection
 attr splitMinSmallestWidth
 attr splitMinWidth
 attr splitRatio
+attr statusBarBackground
 attr toolbarTextColorStyle
 attr ttcIndex
 attr uiCompass
@@ -92,6 +101,9 @@ color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
 color notification_action_color_filter
 color notification_icon_bg_color
+color notification_material_background_media_default_color
+color primary_text_default_material_dark
+color secondary_text_default_material_dark
 color wallet_bright_foreground_disabled_holo_light
 color wallet_bright_foreground_holo_dark
 color wallet_bright_foreground_holo_light
@@ -127,6 +139,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen subtitle_corner_radius
+dimen subtitle_outline_width
+dimen subtitle_shadow_offset
+dimen subtitle_shadow_radius
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -194,6 +210,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id action0
 id action_container
 id action_divider
 id action_image
@@ -201,6 +218,7 @@ id action_text
 id actions
 id adjust_height
 id adjust_width
+id all
 id android_pay
 id android_pay_dark
 id android_pay_light
@@ -210,16 +228,28 @@ id async
 id auto
 id blocking
 id book_now
+id bottom
 id buyButton
 id buy_now
 id buy_with
 id buy_with_google
+id cancel_action
+id center
+id center_horizontal
+id center_vertical
 id chronometer
 id classic
+id clip_horizontal
+id clip_vertical
 id dark
 id dialog_button
 id donate_with
 id donate_with_google
+id end
+id end_padder
+id fill
+id fill_horizontal
+id fill_vertical
 id forever
 id googleMaterial2
 id google_wallet_classic
@@ -234,6 +264,7 @@ id icon_group
 id icon_only
 id info
 id italic
+id left
 id light
 id line1
 id line3
@@ -242,6 +273,7 @@ id logo_only
 id ltr
 id match_parent
 id material
+id media_actions
 id monochrome
 id none
 id normal
@@ -249,6 +281,7 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id production
+id right
 id right_icon
 id right_side
 id rtl
@@ -257,6 +290,8 @@ id satellite
 id selectionDetails
 id slide
 id standard
+id start
+id status_bar_latest_event_content
 id strict_sandbox
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -277,15 +312,26 @@ id text
 id text2
 id time
 id title
+id top
 id wide
 id wrap_content
+integer cancel_button_image_alpha
 integer google_play_services_version
 integer status_bar_notification_info_maxnum
 layout custom_dialog
 layout notification_action
 layout notification_action_tombstone
+layout notification_media_action
+layout notification_media_cancel_action
+layout notification_template_big_media
+layout notification_template_big_media_custom
+layout notification_template_big_media_narrow
+layout notification_template_big_media_narrow_custom
 layout notification_template_custom_big
 layout notification_template_icon_group
+layout notification_template_lines_media
+layout notification_template_media
+layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout wallet_test_layout
@@ -314,19 +360,27 @@ style LaunchTheme
 style NormalTheme
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
+style TextAppearance_Compat_Notification_Info_Media
 style TextAppearance_Compat_Notification_Line2
+style TextAppearance_Compat_Notification_Line2_Media
+style TextAppearance_Compat_Notification_Media
 style TextAppearance_Compat_Notification_Time
+style TextAppearance_Compat_Notification_Time_Media
 style TextAppearance_Compat_Notification_Title
+style TextAppearance_Compat_Notification_Title_Media
 style WalletFragmentDefaultButtonTextAppearance
 style WalletFragmentDefaultDetailsHeaderTextAppearance
 style WalletFragmentDefaultDetailsTextAppearance
 style WalletFragmentDefaultStyle
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText
+style Widget_Support_CoordinatorLayout
 styleable ActivityFilter activityAction activityName
 styleable ActivityRule alwaysExpand
 styleable Capability queryPatterns shortcutMatchRequired
 styleable ColorStateListItem android_color android_alpha alpha
+styleable CoordinatorLayout keylines statusBarBackground
+styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_anchorGravity layout_behavior layout_dodgeInsetEdges layout_insetEdge layout_keyline
 styleable CustomWalletTheme customThemeStyle toolbarTextColorStyle windowTransitionStyle
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery fontProviderSystemFontFamily
 styleable FontFamilyFont android_font android_fontWeight android_fontStyle android_ttcIndex android_fontVariationSettings font fontStyle fontVariationSettings fontWeight ttcIndex
@@ -340,3 +394,4 @@ styleable SplitPairRule clearTop finishPrimaryWithSecondary finishSecondaryWithP
 styleable SplitPlaceholderRule placeholderActivityName splitLayoutDirection splitMinSmallestWidth splitMinWidth splitRatio
 styleable WalletFragmentOptions appTheme environment fragmentMode fragmentStyle
 styleable WalletFragmentStyle buyButtonAppearance buyButtonHeight buyButtonText buyButtonWidth maskedWalletDetailsBackground maskedWalletDetailsButtonBackground maskedWalletDetailsButtonTextAppearance maskedWalletDetailsHeaderTextAppearance maskedWalletDetailsLogoImageType maskedWalletDetailsLogoTextColor maskedWalletDetailsTextAppearance
+xml filepaths
